@@ -1,0 +1,1 @@
+theme get --list -p=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 -s=ceramics-test.myshopify.com

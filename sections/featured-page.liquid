@@ -1,0 +1,41 @@
+
+<div class="page-width">
+  <div class="section-header">
+   </div>
+
+  <div class="grid">
+    <div class="grid__item one-whole">
+      <div class="page-wrapper">
+        {{ pages[section.settings.page].content }}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Page",
+    "class": "index-section",
+    "settings": [
+      {
+        "type": "page",
+        "id": "page",
+        "label": "Page",
+		"info": "Select the page to feature"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Page",
+        "category": "Pages"
+      }
+    ]
+  }
+{% endschema %}
+
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
