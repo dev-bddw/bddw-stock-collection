@@ -1181,6 +1181,15 @@ html, body { background: $colorBody; }
   }
 }
 
+.grid-link__image-on-hold {
+  img {
+    .sold-out & {
+      opacity: 0.4;
+      filter: alpha(opacity=40);
+    }
+  }
+}
+
 .grid-link__title,
 .grid-link__meta {
   position: relative;
@@ -1216,7 +1225,7 @@ html, body { background: $colorBody; }
   font-size: 1em;
 }
 
-$badgeSize: 60px;
+$badgeSize: 40px;
 .badge {
   display: table;
   position: absolute;
@@ -1228,9 +1237,18 @@ $badgeSize: 60px;
   text-transform: uppercase;
   font-weight: $bodyFontWeightBold;
   text-align: center;
-  font-size: em(12px);
+  font-size: em(16px);
   line-height: 1.1;
   z-index: 10;
+}
+
+.badge--hold {
+  left: 80%;
+  top: 20%;
+  margin-top: -($badgeSize / 2);
+  margin-left: -($badgeSize / 2);
+  background-color: $colorBtnPrimary;
+  color: $colorBtnPrimaryText;
 }
 
 .badge--sold-out {
@@ -1238,8 +1256,8 @@ $badgeSize: 60px;
   left: 50%;
   margin-top: -($badgeSize / 2);
   margin-left: -($badgeSize / 2);
-  background-color: $colorBtnPrimary;
-  color: $colorBtnPrimaryText;
+  background-color: red;
+  color: $colorBtnPrimary;
 }
 
 .badge--sale {

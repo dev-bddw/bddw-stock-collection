@@ -8,6 +8,13 @@
   {% assign on_sale = true %}
 {% endif %}
 
+{% if featured.tags contains "HOLD" %}
+  {% assign on_hold = true %}
+{% else %}
+  {% assign on_hold = false %}
+{% endif %}
+
+
 {% assign sold_out = true %}
 {% assign sold_out_text = 'products.product.sold_out' | t %}
 {% if featured.available %}
@@ -21,19 +28,28 @@
   {% capture product_title %}{{ featured.title | escape }}{% endcapture %}
 {% endif %}
 
-<div class="{% if sold_out %} sold-out{% endif %}{% if on_sale %} on-sale{% endif %}">
+<div class="{% if on_hold %}on_hold{% endif %}{% if sold_out %} sold-out{% endif %}{% if on_sale %} on-sale{% endif %}">
   <a href="{{ featured.url | within: collection }}" class="grid-link{% if section.settings.center_grid_link %} text-center{% endif %}">
     <span class="grid-link__image grid-link__image--loading{% if section.settings.show_sold_out_circle %} grid-link__image-sold-out{% endif %} grid-link__image--product" data-image-wrapper>
+      
       {% if on_sale and section.settings.show_sale_circle %}
         <span class="badge badge--sale">
           <span class="badge__text{% if sale_text.size > 7 %} badge__text--small{% endif %}">{{ 'products.product.sale' | t }}</span>
         </span>
       {% endif %}
+      
       {% if sold_out and section.settings.show_sold_out_circle %}
         <span class="badge badge--sold-out">
           <span class="badge__text{% if sold_out_text.size > 9 %} badge__text--small{% endif %}">{{ 'products.product.sold_out' | t }}</span>
         </span>
       {% endif %}
+
+      {% if on_hold %}
+       <span class="badge badge--hold">
+        <span class="badge__text">H</span>
+      </span>
+    {% endif %}
+
       <span class="grid-link__image-centered">
         {% if featured.title != '' %}
           {% unless featured.featured_image == blank %}
